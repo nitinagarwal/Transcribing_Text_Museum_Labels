@@ -7,7 +7,7 @@ close all;
 clear all;
 
 baseDir = pwd;  % Enter your base directory where images are stored
-folderName = 'label/test_label'; %testing on test labels.
+folderName = 'label/test_label'; %testing on test labels or real labels
 
 dirinfo=dir(fullfile(baseDir,folderName,'/*_1.jpg'));           % reading  the images by name
 % assert(length(dirinfo) == 3,' Less than 3 segmented labels ');
@@ -216,8 +216,9 @@ clear cand_edg cand_weig;
 % pick max such that after that all values are very low
 delta = delta(1:20);        
 
-difference = diff(delta); % compute the derivative
-idx = find(difference == min(difference));  % compute the min value
+difference = abs(diff(delta)); % compute the derivative
+idx=find(difference>0.3);      
+idx=idx(end);
 
 % there are more than 1 lines
 Tf = Told{idx+1};
@@ -273,6 +274,8 @@ for i=1:length(Trajnew)
       
     label.traj_textLine_coeff{i}=coeffs;
     label.traj_textLinesOld{i} = traj_textLines;
+    
+    traj_textLines = unique(traj_textLines,'rows','stable');     % removes nan
  
     label.traj_textLines{i}=interparc(150,traj_textLines(:,1),traj_textLines(:,2),'linear');  % resampling the textLine
 end
@@ -495,10 +498,6 @@ figure,imshowpair(I1,I2,'falsecolor') % before alignment
 
 [I1, newimage,tform] = affineAlignment(I1,I2);
 
-% warping using affine transformation
-outputView = imref2d(size(rgb2gray(I1)));
-newimage  = imwarp(I2,tform,'OutputView',outputView,'FillValues',255);
-
 figure,imshowpair(I1,newimage,'falsecolor')
 
 label1.affine = I1;
@@ -507,7 +506,6 @@ label2.tform = tform;
 
 % transforming the pts for the second image as well using tform
 label2 = transformPoints(label2,tform);
-
 
 %-----------------------non-linear alignment-----------------------
 % non-linearly align each textLine so get accurate alignment
