@@ -4,7 +4,7 @@ An automatic,end-to-end, modular pipeline for transcribing small text often foun
 
 ## Getting Started
 
-Please refer to the readMe file.
+Please refer to the runME.m file.
 
 ## License
 
