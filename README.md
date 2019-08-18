@@ -8,6 +8,19 @@ An automatic,end-to-end, modular pipeline for transcribing small text often foun
 
 Please refer to the runME.m file.
 
+## Citation
+If you find this code useful, please consider citing our paper
+
+```
+@inproceedings{agarwal2018bugproject,
+	Author = {Agarwal, Nitin and Ferrier, Nicola and Hereld, Mark},
+	Booktitle = {WACV},
+	Title = {Towards Automated Transcription of Label Text from Pinned Insect Collections},
+	Year = {2018}
+}
+```
+
+
 ## License
 
 Our code is released under MIT License (see License file for details).
