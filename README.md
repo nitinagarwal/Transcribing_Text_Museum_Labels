@@ -1,8 +1,7 @@
 # Transcribing_Text_Museum_Labels  
+An automatic,end-to-end, modular pipeline for transcribing small text often found on museum labels.
+
 ### WACV 2018 [[Project Page]](https://www.ics.uci.edu/~agarwal/bugproject/index.html)
-
-
-An automatic,end-to-end, modular pipeline for transcribing small text often found on museum labels. 
 
 ## Getting Started
 
